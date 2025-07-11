@@ -236,7 +236,7 @@ class _AchievementCard extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             description,
-            style: const TextStyle(fontSize: 11, color: Colors.black54),
+            style: const TextStyle(fontSize: 9, color: Colors.black54),
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:benin_quiz/screens/profilScreen.dart';
+import 'package:benin_quiz/screens/quizScreen.dart';
 import 'package:flutter/material.dart';
 import 'homeScreen.dart';
 
@@ -12,9 +13,10 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _currentIndex = 0;
 
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    ProfileScreen(),
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    QuizScreen(),
+    const ProfileScreen(),
   ];
 
   @override
