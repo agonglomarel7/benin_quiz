@@ -1,5 +1,8 @@
+import 'package:benin_quiz/screens/singupScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'homeScreen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -111,6 +114,10 @@ class LoginScreen extends StatelessWidget {
                           ),
                           onPressed: () {
                             // TODO: login logic
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => const HomeScreen()),
+                            );
                           },
                           child: const Text(
                             "Login to My Account",
@@ -180,7 +187,10 @@ class LoginScreen extends StatelessWidget {
                       const Text("Don't have an account? "),
                       GestureDetector(
                         onTap: () {
-                          // TODO: navigate to sign up
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                          );
                         },
                         child: const Text(
                           "Sign Up",
@@ -190,6 +200,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+
                     ],
                   )
                 ],
