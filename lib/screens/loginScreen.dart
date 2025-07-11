@@ -1,3 +1,4 @@
+import 'package:benin_quiz/screens/main_navigation.dart';
 import 'package:benin_quiz/screens/singupScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -116,7 +117,7 @@ class LoginScreen extends StatelessWidget {
                             // TODO: login logic
                             Navigator.pushReplacement(
                               context,
-                              MaterialPageRoute(builder: (context) => const HomeScreen()),
+                              MaterialPageRoute(builder: (context) => const MainNavigation()),
                             );
                           },
                           child: const Text(

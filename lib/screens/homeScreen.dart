@@ -1,6 +1,8 @@
   import 'package:flutter/material.dart';
   import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'main_navigation.dart';
+
   class HomeScreen extends StatelessWidget {
     const HomeScreen({super.key});
 
@@ -161,23 +163,6 @@
               const SizedBox(height: 80),
             ],
           ),
-        ),
-
-        // Bottom navigation bar
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          selectedItemColor: Colors.deepOrange,
-          unselectedItemColor: Colors.grey,
-          type: BottomNavigationBarType.fixed,
-          onTap: (index) {
-            // TODO: navigate by index
-          },
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.quiz), label: 'Quiz'),
-            BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: 'Summary'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          ],
         ),
       );
     }
