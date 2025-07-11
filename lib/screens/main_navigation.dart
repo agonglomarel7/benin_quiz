@@ -1,3 +1,4 @@
+import 'package:benin_quiz/screens/perfomanceScreen.dart';
 import 'package:benin_quiz/screens/profilScreen.dart';
 import 'package:benin_quiz/screens/quizScreen.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ class _MainNavigationState extends State<MainNavigation> {
   final List<Widget> _screens = [
     const HomeScreen(),
     QuizScreen(),
+    PerformanceSummaryScreen(),
+
     const ProfileScreen(),
   ];
 
