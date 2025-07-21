@@ -2,8 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../controllers/auth_controller.dart';
+
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+   SignUpScreen({super.key});
+
+   final TextEditingController firstnameController = TextEditingController();
+   final TextEditingController lastnameController = TextEditingController();
+   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +81,38 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 24),
 
+                        // name
+                        TextFormField(
+                          controller: firstnameController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: 'Firstname',
+                            prefixIcon: Icon(Icons.person_outline),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(12)),
+                            ),
+                          ),
+                        ),
+
+                        // lastname
+                        const SizedBox(height: 16),// Username
+                        TextFormField(
+                          controller: lastnameController,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            labelText: 'Lastname',
+                            prefixIcon: Icon(Icons.person_outline),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(12)),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 16),
                         // Username
                         TextFormField(
+                          controller: usernameController,
                           decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
@@ -89,6 +127,7 @@ class SignUpScreen extends StatelessWidget {
 
                         // Email
                         TextFormField(
+                          controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: const InputDecoration(
                             filled: true,
@@ -104,6 +143,7 @@ class SignUpScreen extends StatelessWidget {
 
                         // Password
                         TextFormField(
+                          controller: passwordController,
                           obscureText: true,
                           decoration: const InputDecoration(
                             filled: true,
@@ -126,7 +166,14 @@ class SignUpScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            // TODO: sign up logic
+                            AuthController.inscrire(
+                              context,
+                              nom: lastnameController.text,
+                              prenom: firstnameController.text,
+                              pseudo: usernameController.text,
+                              email: emailController.text,
+                              motDePasse: passwordController.text,
+                            );
                           },
                           child: const Text(
                             "Create My Account",
