@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://10.0.2.2:5000/api';
+  static const String baseUrl = 'https://benin-quiz-api.onrender.com/api';
+  //final String baseUrl = "https://benin-quiz-api.onrender.com/api";
 
   static Future<http.Response> inscription(Map<String, dynamic> data) {
     return http.post(
