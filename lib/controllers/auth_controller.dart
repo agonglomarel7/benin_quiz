@@ -34,9 +34,17 @@ class AuthController {
           context: context,
           builder: (_) => AlertDialog(
             title: const Text("Succès"),
-            content: Text("Bienvenue ${utilisateur.prenom}!"),
+            content: Text("Votre compte a été bien créé ${utilisateur.prenom}!"),
           ),
         );
+
+// Attendre un peu, puis fermer le dialog et naviguer
+        Future.delayed(const Duration(seconds: 2), () {
+          Navigator.of(context).pop(); // Ferme le dialogue
+          Navigator.pop(context); // Navigue vers login
+        });
+
+
       } else {
         final data = jsonDecode(response.body);
         showDialog(
