@@ -1,12 +1,13 @@
-import 'package:benin_quiz/screens/main_navigation.dart';
 import 'package:benin_quiz/screens/singupScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'homeScreen.dart';
+import '../controllers/auth_controller.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+
+  final TextEditingController pseudoController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +16,12 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Image de fond en haut
+          // Image de fond
           Positioned(
             top: 0,
             left: 0,
             right: 0,
-            height: screenHeight * 0.30,
+            height: screenHeight * 0.23,
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
@@ -31,25 +32,20 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
 
-          // Contenu avec padding et scroll
+          // Contenu
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 88),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 48),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(height: 50), // Pour éviter d’être sous l’image
-
+                  const SizedBox(height: 80),
                   const Text(
                     "Benin Quiz Quest",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 52),
+                  const SizedBox(height: 32),
 
                   Container(
                     padding: const EdgeInsets.all(24),
@@ -60,47 +56,32 @@ class LoginScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const Text(
-                          "Welcome Back!",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        const Text("Welcome Back!", textAlign: TextAlign.center, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                         const SizedBox(height: 8),
-                        const Text(
-                          "Enter your credentials to continue your cultural journey.",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.black54),
-                        ),
+                        const Text("Enter your credentials to continue your cultural journey.", textAlign: TextAlign.center, style: TextStyle(color: Colors.black54)),
                         const SizedBox(height: 24),
 
                         TextFormField(
+                          controller: pseudoController,
                           decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             labelText: 'Username',
-                            hintText: 'Enter your username',
                             prefixIcon: Icon(Icons.person_outline),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(12)),
-                            ),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
                           ),
                         ),
                         const SizedBox(height: 16),
 
                         TextFormField(
+                          controller: passwordController,
                           obscureText: true,
                           decoration: const InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
                             labelText: 'Password',
-                            hintText: 'Enter your password',
                             prefixIcon: Icon(Icons.lock_outline),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(12)),
-                            ),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
                           ),
                         ),
                         const SizedBox(height: 24),
@@ -109,33 +90,22 @@ class LoginScreen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.redAccent,
                             padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
                           onPressed: () {
-                            // TODO: login logic
-                            Navigator.pushReplacement(
+                            AuthController.connecter(
                               context,
-                              MaterialPageRoute(builder: (context) => const MainNavigation()),
+                              pseudo: pseudoController.text,
+                              motDePasse: passwordController.text,
                             );
                           },
-                          child: const Text(
-                            "Login to My Account",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
-                          ),
+                          child: const Text("Login to My Account", style: TextStyle(color: Colors.white, fontSize: 16)),
                         ),
                         const SizedBox(height: 12),
 
                         TextButton(
                           onPressed: () {},
-                          child: const Text(
-                            "Forgot Password?",
-                            style: TextStyle(color: Colors.brown),
-                          ),
+                          child: const Text("Forgot Password?", style: TextStyle(color: Colors.brown)),
                         ),
                         const SizedBox(height: 12),
 
@@ -158,9 +128,7 @@ class LoginScreen extends StatelessWidget {
                           style: OutlinedButton.styleFrom(
                             backgroundColor: Colors.white,
                             padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
                         ),
                         const SizedBox(height: 12),
@@ -172,15 +140,12 @@ class LoginScreen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                             padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                           ),
                         ),
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -188,20 +153,11 @@ class LoginScreen extends StatelessWidget {
                       const Text("Don't have an account? "),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SignUpScreen()),
-                          );
+                          // TODO: navigate to SignUpScreen
+                           Navigator.push(context, MaterialPageRoute(builder: (_) => SignUpScreen()));
                         },
-                        child: const Text(
-                          "Sign Up",
-                          style: TextStyle(
-                            color: Colors.redAccent,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        child: const Text("Sign Up", style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
                       ),
-
                     ],
                   )
                 ],
