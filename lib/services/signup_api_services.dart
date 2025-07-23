@@ -14,6 +14,15 @@ class ApiService {
     );
   }
 
+  static Future<http.Response> connexion(Map<String, dynamic> data) {
+    return http.post(
+      Uri.parse('$baseUrl/auth/connexion'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(data),
+    );
+  }
+
+
   static Future<http.Response> getProfile() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
