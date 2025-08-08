@@ -22,17 +22,26 @@ class ApiService {
     );
   }
 
-
-  static Future<http.Response> getProfile() async {
+  Future<Map<String, dynamic>?> fetchUserProfile() async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
+    if (token == null) return null;
 
-    return http.get(
-      Uri.parse('$baseUrl/user/profil'),
+    final response = await http.get(
+      Uri.parse('https://benin-quiz-api.onrender.com/api/auth/profil'),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token',
       },
     );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return data['utilisateur']; // ✅ On retourne directement l'objet utilisateur
+    } else {
+      return null;
+    }
   }
+
+
 }
